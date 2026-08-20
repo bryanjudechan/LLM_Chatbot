@@ -25,15 +25,15 @@ while True:
         break
 
     # Append user input to context
-    chat_history.append({"role": "user", "parts": [{"text": user_input}]})
+    chat_history.append({"role": "user", "parts": [{"text": user_input}]}) #"parts" needs to be a list of dicts even though we only have one part here
 
     try:
         # Call Gemma 4 via API
         response = client.models.generate_content(
             model="gemma-4-26b-a4b-it",
             contents=chat_history,
-            config=types.GenerateContentConfig(
-                system_instruction=system_instruction
+            config=types.GenerateContentConfig( # this line is optional, but allows you to set parameters like temperature, max output tokens, etc.
+                system_instruction=system_instruction # refer to line 14 for the system instruction
             )
         )
 
